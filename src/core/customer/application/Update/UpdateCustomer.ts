@@ -1,5 +1,5 @@
-import { ICustomerRepository } from "./interfaces/CustomerRepository.interface"
-import { UpdateCustomerInput, UpdateCustomerOutput, UpdateCustomerUseCase } from "./interfaces/UpdateCustomer.interface"
+import { ICustomerRepository } from "../../domain/CustomerRepository.interface"
+import { UpdateCustomerInput, UpdateCustomerOutput, UpdateCustomerUseCase } from "./UpdateCustomer.interface"
 
 export class UpdateCustomerImpl implements UpdateCustomerUseCase {
     constructor(

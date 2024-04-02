@@ -1,6 +1,6 @@
-import { OrderStatus } from "../../../shared/domain/orderState.enum";
-import { Customer } from "../../customer/domain/user";
-import { Product } from "../../product/domain/product";
+import { OrderStatus } from "../../../shared/domain/OrderState.enum";
+import { Customer } from "../../customer/domain/User";
+import { Product } from "../../product/domain/Product";
 
 export class Order {
     id: string;

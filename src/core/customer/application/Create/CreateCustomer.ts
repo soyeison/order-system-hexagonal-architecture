@@ -1,10 +1,11 @@
-import { Customer } from "../domain/user";
-import { CreateCustomerInput, CreateCustomerOutput, CreateCustomerUseCase } from "./interfaces/CreateCustomer.interface";
+import { Customer } from "../../domain/User";
+import { CreateCustomerInput, CreateCustomerOutput, CreateCustomerUseCase } from "./CreateCustomer.interface";
+import { ICustomerRepository } from "../../domain/CustomerRepository.interface";
+import { UUIDGenerator } from "../../../../shared/domain/Uuid";
 
 export class CreateCustomerImpl implements CreateCustomerUseCase {
     constructor(
-        // Debo traerme las interfaces y no las implementaciones para que sea agnostico de la implementacion como tal
-        // private readonly customerRepositoryRepo: CustomerRepositoryInterface
+        private readonly customerRepositoryRepo: ICustomerRepository
     ) {}
 
     async execute(input: CreateCustomerInput): Promise<CreateCustomerOutput> {
@@ -14,7 +15,7 @@ export class CreateCustomerImpl implements CreateCustomerUseCase {
         const customer = await this.createCustomer(input)
 
         // Guardar este customer en memoria
-        // await this.customerRepositoryRepo.addCustomer(customer)
+        await this.customerRepositoryRepo.addCustomer(customer)
 
         return {
             customer
@@ -23,9 +24,9 @@ export class CreateCustomerImpl implements CreateCustomerUseCase {
 
     private async createCustomer(input: CreateCustomerInput): Promise<Customer> {
         try {
-            // const id = UUIDGenerator.generateUUID()
+            const id = UUIDGenerator.generateUUID()
             const newCustomer = new Customer(
-                'id', 
+                id, 
                 input.name, 
                 input.shippingAddress, 
                 {

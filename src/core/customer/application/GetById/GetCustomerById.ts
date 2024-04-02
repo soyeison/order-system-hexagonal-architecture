@@ -1,5 +1,5 @@
-import { ICustomerRepository } from "./interfaces/CustomerRepository.interface"
-import { GetCustomerByIdInput, GetCustomerByIdOutput, GetCustomerByIdUseCase } from "./interfaces/GetCustomerById.interface"
+import { ICustomerRepository } from "../../domain/CustomerRepository.interface"
+import { GetCustomerByIdInput, GetCustomerByIdOutput, GetCustomerByIdUseCase } from "./GetCustomerById.interface"
 
 export class GetCustomerByIdImpl implements GetCustomerByIdUseCase {
     constructor(

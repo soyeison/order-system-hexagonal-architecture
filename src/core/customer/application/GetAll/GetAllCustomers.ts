@@ -1,5 +1,5 @@
-import { ICustomerRepository } from "./interfaces/CustomerRepository.interface";
-import { GetAllCustomersOutput, GetAllCustomersUseCase } from "./interfaces/GetAllCustomers.interface"
+import { ICustomerRepository } from "../../domain/CustomerRepository.interface";
+import { GetAllCustomersOutput, GetAllCustomersUseCase } from "./GetAllCustomers.interface"
 
 
 export class GetAllCustomersImpl implements GetAllCustomersUseCase {
