@@ -22,7 +22,7 @@ export class CreateProductImpl implements ICreateProduct {
         try {
             const id = UUIDGenerator.generateUUID()
             const newProduct = new Product(
-                '',
+                id,
                 input.name,
                 input.description,
                 input.price,

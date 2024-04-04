@@ -1,5 +1,7 @@
 import { ICustomerRepository } from "../../../customer/domain/CustomerRepository.interface"
 import { Customer } from "../../../customer/domain/User"
+import { Product } from "../../../product/domain/Product"
+import { IProductRepository } from "../../../product/domain/ProductRepository.interface"
 import { Order } from "../../domain/Order"
 import { IOrderRepository } from "../../domain/OrderRepository.interface"
 import { OrderModel } from "./Order.model"
@@ -8,18 +10,31 @@ import { OrderDB } from "./memory/OrderDB"
 export class OrderRepository implements IOrderRepository {
     constructor(
         private readonly orderRepo: OrderDB,
-        private readonly customerRepo: ICustomerRepository
+        private readonly customerRepo: ICustomerRepository,
+        private readonly productRepo: IProductRepository
     ) {}
 
     async addOrder(order: Order): Promise<void> {
+        const productIds = order.products.map((product) => (product.id))
         const orderModel = new OrderModel(
             order.id,
             order.customer.id,
+            productIds,
             order.totalPrice,
             order.status,
             order.createdAt
         )
         await this.orderRepo.addOrder(orderModel)
+    }
+
+    private async getProducts(orderModel: OrderModel): Promise<Product[]> {
+        const productsResp = []
+            for (let j = 0; j < orderModel.productIds.length; j++) {
+                const productId = orderModel.productIds[j];
+                const product = await this.productRepo.getProductById(productId)
+                productsResp.push(product)
+            }
+        return productsResp
     }
 
     async getOrders(): Promise<Order[]> {
@@ -33,9 +48,11 @@ export class OrderRepository implements IOrderRepository {
                 continue
             }
 
+            const products = await this.getProducts(orderModel)
+
             const newOrder = new Order(
                 orderModel.id,
-                [],
+                products,
                 customer,
                 orderModel.status,
                 orderModel.createdAt,
@@ -56,9 +73,11 @@ export class OrderRepository implements IOrderRepository {
 
         const customer = await this.customerRepo.getCustomerById(orderModel.customerId)
 
+        const products = await this.getProducts(orderModel)
+
         return new Order(
             orderModel.id,
-            [],
+            products,
             customer,
             orderModel.status,
             orderModel.createdAt,
@@ -66,24 +85,18 @@ export class OrderRepository implements IOrderRepository {
     }
 
     async updateOrder(id: string, order: Order): Promise<Order> {
+        const productIds = order.products.map((product) => (product.id))
         const orderModel = new OrderModel(
             order.id,
             order.customer.id,
+            productIds,
             order.totalPrice,
             order.status,
             order.createdAt,
         )
 
-        const orderModelUpdated = await this.orderRepo.updateOrder(id, orderModel)
+        await this.orderRepo.updateOrder(id, orderModel)
 
-        const customer = await this.customerRepo.getCustomerById(orderModel.customerId)
-
-        return new Order(
-            orderModelUpdated.id,
-            [],
-            customer,
-            orderModelUpdated.status,
-            orderModelUpdated.createdAt
-        )
+        return order
     }
 }

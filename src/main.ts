@@ -24,7 +24,7 @@ import { OrderStatus } from "./shared/domain/OrderState.enum"
     // Inicializar
     const customerRepositoryIntance = new CustomerRepository(customerDBInstance)
     const productRepositoryInstance = new ProductRepository(productDBInstance)
-    const orderRepositoryInstance = new OrderRepository(orderDBInstance, customerRepositoryIntance)
+    const orderRepositoryInstance = new OrderRepository(orderDBInstance, customerRepositoryIntance, productRepositoryInstance)
     const orderUpdatedStateInstance = new UpdateOrderStatusImpl(orderRepositoryInstance, transitionStrategies)
 
     // Creamos un customer
@@ -64,7 +64,6 @@ import { OrderStatus } from "./shared/domain/OrderState.enum"
     }
     const { order } = await createOrderUsecasesInstance.execute(orderInformation)
     console.log("Orden: ", JSON.stringify(order, null, 4))
-    console.log("Precio total: ", order.calcTotalPrice())
 
     // Mover la orden entre los diferentes estados
     const inputUpdateState: UpdateOrderStatusInput = {
@@ -73,7 +72,6 @@ import { OrderStatus } from "./shared/domain/OrderState.enum"
     }
     const { order: orderUpdated } = await orderUpdatedStateInstance.execute(inputUpdateState)
     console.log("Orden actualizada: ", orderUpdated)
-    console.log("Orden actualizada con precio total: ", orderUpdated.calcTotalPrice())
 })()
 
 /* // Implementacion del patron state
