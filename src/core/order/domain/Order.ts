@@ -26,7 +26,7 @@ export class Order {
         this.calcTotalPrice()
     }
 
-    public addProducts(products: Product[]) {
+    public addProducts(...products: Product[]) {
         this.products.push(...products)
     }
 
