@@ -1,8 +1,8 @@
 import { Order } from "./Order"
 
-export interface OrderRepositoryInterface {
+export interface IOrderRepository {
     addOrder(order: Order): Promise<void>
     getOrders(): Promise<Order[]>
-    getOneOrder(id: string): Promise<Order | undefined>
+    getOrderById(id: string): Promise<Order | null>
     updateOrder(id: string, order: Order): Promise<Order>
 }

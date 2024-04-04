@@ -1,7 +1,7 @@
 import { IProductRepository } from "../../domain/ProductRepository.interface"
-import { GetAllProductsOutput, GetAllProductsUseCase } from "./GetAllProducts.interface"
+import { GetAllProductsOutput, IGetAllProducts } from "./GetAllProducts.interface"
 
-export class GetAllProductsImpl implements GetAllProductsUseCase {
+export class GetAllProductsImpl implements IGetAllProducts {
     constructor(
         private readonly productRepositoryRepo: IProductRepository
     ) {}

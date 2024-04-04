@@ -1,24 +1,24 @@
 import { IProductRepository } from "../../domain/ProductRepository.interface"
-import { GetOneProductInput, GetOneProductOutput, GetOneProductUseCase } from "./GetProductById.interface"
+import { GetProductByIdInput, GetProductByIdOutput, IGetProductById } from "./GetProductById.interface"
 
-export class GetOneProductImpl implements GetOneProductUseCase {
+export class GetProductByIdImpl implements IGetProductById {
     constructor(
         private readonly productRepositoryRepo: IProductRepository
     ) {}
 
-    async execute(input: GetOneProductInput): Promise<GetOneProductOutput> {
-        const product = await this.getOneCustomer(input.id)
+    async execute(input: GetProductByIdInput): Promise<GetProductByIdOutput> {
+        const product = await this.getProductById(input.id)
 
         return {
             product
         }
     }
 
-    private async getOneCustomer(id: string) {
-        const product = await this.productRepositoryRepo.getOneProduct(id)
+    private async getProductById(id: string) {
+        const product = await this.productRepositoryRepo.getProductById(id)
 
         if (!product) {
-            throw new Error('')
+            throw new Error('No se pudo encontrar el producto')
         }
 
         return product

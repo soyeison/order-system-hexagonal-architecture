@@ -1,8 +1,8 @@
 import { ICustomerRepository } from "../../domain/CustomerRepository.interface";
-import { GetAllCustomersOutput, GetAllCustomersUseCase } from "./GetAllCustomers.interface"
+import { GetAllCustomersOutput, IGetAllCustomers } from "./GetAllCustomers.interface"
 
 
-export class GetAllCustomersImpl implements GetAllCustomersUseCase {
+export class GetAllCustomersImpl implements IGetAllCustomers {
     constructor(
         private readonly customerRepositoryRepo: ICustomerRepository
     ) {}

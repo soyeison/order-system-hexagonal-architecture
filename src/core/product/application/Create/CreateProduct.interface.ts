@@ -7,4 +7,4 @@ export interface CreateProductOutput {
     product: Product
 }
 
-export interface CreateProductUseCase extends BaseUseCase<CreateProductInput, CreateProductOutput> {}
+export interface ICreateProduct extends BaseUseCase<CreateProductInput, CreateProductOutput> {}

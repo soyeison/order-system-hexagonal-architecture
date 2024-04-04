@@ -1,9 +1,9 @@
 import { Customer } from "../../domain/User";
-import { CreateCustomerInput, CreateCustomerOutput, CreateCustomerUseCase } from "./CreateCustomer.interface";
+import { CreateCustomerInput, CreateCustomerOutput, ICreateCustomer } from "./CreateCustomer.interface";
 import { ICustomerRepository } from "../../domain/CustomerRepository.interface";
 import { UUIDGenerator } from "../../../../shared/domain/Uuid";
 
-export class CreateCustomerImpl implements CreateCustomerUseCase {
+export class CreateCustomerImpl implements ICreateCustomer {
     constructor(
         private readonly customerRepositoryRepo: ICustomerRepository
     ) {}

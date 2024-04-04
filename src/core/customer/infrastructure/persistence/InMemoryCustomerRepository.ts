@@ -45,12 +45,12 @@ export class CustomerRepository implements ICustomerRepository {
         }
     }
 
-    async getCustomerById(id: string): Promise<Customer | null> {
+    async getCustomerById(id: string): Promise<Customer> {
         try {
             const customerModel = await this.customerRepo.getCustomerById(id)
 
             if (!customerModel) {
-                return null
+                throw new Error('No se encontro el customer')
             }
 
             return new Customer(
@@ -82,13 +82,13 @@ export class CustomerRepository implements ICustomerRepository {
             const customerModelUpdated = await this.customerRepo.updateCustomer(id, customerModel)
 
             return new Customer(
-                customerModel.id,
-                customerModel.name,
-                customerModel.shippingAddress,
+                customerModelUpdated.id,
+                customerModelUpdated.name,
+                customerModelUpdated.shippingAddress,
                 {
-                    email: customerModel.email,
-                    phoneNumber: customerModel.phoneNumber,
-                    dateOfBirth: customerModel.dateOfBirth
+                    email: customerModelUpdated.email,
+                    phoneNumber: customerModelUpdated.phoneNumber,
+                    dateOfBirth: customerModelUpdated.dateOfBirth
                 }
             )
         } catch (error) {

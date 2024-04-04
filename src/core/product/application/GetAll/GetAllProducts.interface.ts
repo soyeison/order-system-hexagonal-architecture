@@ -5,4 +5,4 @@ export interface GetAllProductsOutput {
     products: Product[]
 }
 
-export interface GetAllProductsUseCase extends BaseUseCase<void, GetAllProductsOutput> {}
+export interface IGetAllProducts extends BaseUseCase<void, GetAllProductsOutput> {}

@@ -1,12 +1,12 @@
 import { BaseUseCase } from "../../../../shared/application/BaseUseCase.interface"
 import { Product } from "../../domain/Product"
 
-export interface GetOneProductInput {
+export interface GetProductByIdInput {
     id: string
 }
 
-export interface GetOneProductOutput {
+export interface GetProductByIdOutput {
     product: Product
 }
 
-export interface GetOneProductUseCase extends BaseUseCase<GetOneProductInput, GetOneProductOutput> {}
+export interface IGetProductById extends BaseUseCase<GetProductByIdInput, GetProductByIdOutput> {}

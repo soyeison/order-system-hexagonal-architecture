@@ -9,4 +9,4 @@ export interface GetCustomerByIdOutput {
     customer: Customer
 }
 
-export interface GetCustomerByIdUseCase extends BaseUseCase<GetCustomerByIdInput, GetCustomerByIdOutput> {}
+export interface IGetCustomerById extends BaseUseCase<GetCustomerByIdInput, GetCustomerByIdOutput> {}

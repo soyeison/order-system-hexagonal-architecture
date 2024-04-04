@@ -5,4 +5,4 @@ export interface GetAllCustomersOutput {
     customers: Customer[]
 }
 
-export interface GetAllCustomersUseCase extends BaseUseCase<void, GetAllCustomersOutput> {} 
+export interface IGetAllCustomers extends BaseUseCase<void, GetAllCustomersOutput> {} 

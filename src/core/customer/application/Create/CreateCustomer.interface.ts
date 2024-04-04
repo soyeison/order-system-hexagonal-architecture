@@ -15,4 +15,4 @@ export interface CreateCustomerOutput {
     customer: Customer
 }
 
-export interface CreateCustomerUseCase extends BaseUseCase<CreateCustomerInput, CreateCustomerOutput> {}
+export interface ICreateCustomer extends BaseUseCase<CreateCustomerInput, CreateCustomerOutput> {}

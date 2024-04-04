@@ -10,4 +10,4 @@ export interface UpdateCustomerOutput {
     updatedCustomer: Customer
 }
 
-export interface UpdateCustomerUseCase extends BaseUseCase<UpdateCustomerInput, UpdateCustomerOutput> {}
+export interface IUpdateCustomer extends BaseUseCase<UpdateCustomerInput, UpdateCustomerOutput> {}

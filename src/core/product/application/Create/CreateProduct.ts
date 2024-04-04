@@ -1,9 +1,9 @@
 import { Product } from "../../domain/Product"
-import { CreateProductInput, CreateProductOutput, CreateProductUseCase } from "./CreateProduct.interface"
+import { CreateProductInput, CreateProductOutput, ICreateProduct } from "./CreateProduct.interface"
 import { IProductRepository } from "../../domain/ProductRepository.interface"
 import { UUIDGenerator } from "../../../../shared/domain/Uuid"
 
-export class CreateProductImpl implements CreateProductUseCase {
+export class CreateProductImpl implements ICreateProduct {
     constructor(
         private readonly productRepositoryRepo: IProductRepository
     ) {}

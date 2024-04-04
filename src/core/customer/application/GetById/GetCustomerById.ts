@@ -1,7 +1,7 @@
 import { ICustomerRepository } from "../../domain/CustomerRepository.interface"
-import { GetCustomerByIdInput, GetCustomerByIdOutput, GetCustomerByIdUseCase } from "./GetCustomerById.interface"
+import { GetCustomerByIdInput, GetCustomerByIdOutput, IGetCustomerById } from "./GetCustomerById.interface"
 
-export class GetCustomerByIdImpl implements GetCustomerByIdUseCase {
+export class GetCustomerByIdImpl implements IGetCustomerById {
     constructor(
         private readonly customerRepositoryRepo: ICustomerRepository
     ) {}
