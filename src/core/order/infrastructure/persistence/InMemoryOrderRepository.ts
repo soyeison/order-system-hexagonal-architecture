@@ -37,7 +37,6 @@ export class OrderRepository implements IOrderRepository {
                 orderModel.id,
                 [],
                 customer,
-                orderModel.totalPrice,
                 orderModel.status,
                 orderModel.createdAt,
             )
@@ -61,7 +60,6 @@ export class OrderRepository implements IOrderRepository {
             orderModel.id,
             [],
             customer,
-            orderModel.totalPrice,
             orderModel.status,
             orderModel.createdAt,
         )
@@ -84,7 +82,6 @@ export class OrderRepository implements IOrderRepository {
             orderModelUpdated.id,
             [],
             customer,
-            orderModelUpdated.totalPrice,
             orderModelUpdated.status,
             orderModelUpdated.createdAt
         )

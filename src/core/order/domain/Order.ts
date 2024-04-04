@@ -6,7 +6,7 @@ export class Order {
     id: string;
     products: Product[];
     customer: Customer;
-    totalPrice: number;
+    totalPrice: number = 0;
     status: OrderStatus;
     createdAt: Date;
 
@@ -14,15 +14,29 @@ export class Order {
         id: string, 
         products: Product[], 
         customer: Customer, 
-        totalPrice: number, 
         status: OrderStatus, 
         createdAt: Date
     ) {
         this.id = id;
         this.products = products;
         this.customer = customer;
-        this.totalPrice = totalPrice;
         this.status = status;
         this.createdAt = createdAt;
+
+        this.calcTotalPrice()
+    }
+
+    public addProducts(products: Product[]) {
+        this.products.push(...products)
+    }
+
+    public removeProducts(productId: string) {
+        this.products = this.products.filter((product) => product.id !== productId)
+    }
+
+    public calcTotalPrice(): number {
+        return this.totalPrice = this.products.reduce((previous, current) => {
+            return previous + current.price
+        }, 0)
     }
 }

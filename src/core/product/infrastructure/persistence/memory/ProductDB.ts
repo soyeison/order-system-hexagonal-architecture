@@ -11,7 +11,6 @@ export class ProductDB implements IProductDB {
     async addProduct(productModel: ProductModel): Promise<void> {
         try {
             this.products.push(productModel)
-            console.log("Se pudo agregar el producto correctamente")
         } catch (error) {
             console.log(error)
             throw new Error('')

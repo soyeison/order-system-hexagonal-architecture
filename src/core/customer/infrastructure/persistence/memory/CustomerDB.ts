@@ -12,7 +12,6 @@ export class CustomerDB implements ICustomerDB {
     async addCustomer(customerModel: CustomerModel): Promise<void> {
         try {
             this.customers.push(customerModel)
-            console.log("Se pudo agregar el customer correctamente")
         } catch (error) {
             console.log(error)
             throw new Error('')

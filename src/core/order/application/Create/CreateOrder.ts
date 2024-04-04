@@ -22,17 +22,12 @@ export class CreateOrderImpl implements ICreateOrder {
     private async createOrder(products: Product[], customer: Customer): Promise<Order> {
         try {
             const id = UUIDGenerator.generateUUID()
-            const totalPrice = this.getTotalPrice(products)
-            const newOrder = new Order(id, products, customer, totalPrice, OrderStatus.Pending, new Date)
+            const newOrder = new Order(id, products, customer, OrderStatus.Pending, new Date)
 
             return newOrder
         } catch (error) {
             console.log(error)
             throw new Error('')
         }
-    }
-
-    private getTotalPrice(products: Product[]) {
-        return products.reduce((total, products) => total + products.price, 0)
     }
 }
