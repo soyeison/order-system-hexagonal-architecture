@@ -9,6 +9,9 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
+    "sequelize": "^6.37.2",
+    "sequelize-typescript": "^2.1.6",
+    "sqlite3": "^5.1.7",
     "uuid": "^9.0.1"
   }
 }

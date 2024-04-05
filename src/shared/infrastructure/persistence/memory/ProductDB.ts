@@ -1,4 +1,4 @@
-import { ProductModel } from "../Product.model"
+import { ProductModel } from "../../../../core/product/infrastructure/persistence/memory/Product.model"
 import { IProductDB } from "./ProductDB.interface"
 
 export class ProductDB implements IProductDB {

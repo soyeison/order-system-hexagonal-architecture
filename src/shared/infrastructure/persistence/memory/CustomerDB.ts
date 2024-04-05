@@ -1,5 +1,5 @@
-import { Customer } from "../../../domain/User"
-import { CustomerModel } from "../Customer.model"
+import { Customer } from "../../../../core/customer/domain/User"
+import { CustomerModel } from "../../../../core/customer/infrastructure/persistence/memory/Customer.model"
 import { ICustomerDB } from "./CustomerDB.interface"
 
 export class CustomerDB implements ICustomerDB {

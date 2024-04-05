@@ -1,4 +1,4 @@
-import { OrderStatus } from "../../../../shared/domain/OrderState.enum";
+import { OrderStatus } from "../../../../../shared/domain/OrderState.enum";
 
 export class OrderModel {
     constructor(

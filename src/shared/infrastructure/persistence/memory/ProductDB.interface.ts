@@ -1,4 +1,4 @@
-import { ProductModel } from "../Product.model"
+import { ProductModel } from "../../../../core/product/infrastructure/persistence/memory/Product.model"
 
 export interface IProductDB {
     addProduct(productModel: ProductModel): Promise<void>

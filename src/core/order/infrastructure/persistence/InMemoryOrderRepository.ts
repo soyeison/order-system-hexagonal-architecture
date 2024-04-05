@@ -4,8 +4,8 @@ import { Product } from "../../../product/domain/Product"
 import { IProductRepository } from "../../../product/domain/ProductRepository.interface"
 import { Order } from "../../domain/Order"
 import { IOrderRepository } from "../../domain/OrderRepository.interface"
-import { OrderModel } from "./Order.model"
-import { OrderDB } from "./memory/OrderDB"
+import { OrderModel } from "./memory/Order.model"
+import { OrderDB } from "../../../../shared/infrastructure/persistence/memory/OrderDB"
 
 export class OrderRepository implements IOrderRepository {
     constructor(

@@ -1,7 +1,7 @@
 import { ICustomerRepository } from "../../domain/CustomerRepository.interface"
 import { Customer } from "../../domain/User"
-import { CustomerModel } from "./Customer.model"
-import { CustomerDB } from "./memory/CustomerDB"
+import { CustomerModel } from "./memory/Customer.model"
+import { CustomerDB } from "../../../../shared/infrastructure/persistence/memory/CustomerDB"
 
 export class CustomerRepository implements ICustomerRepository {
     constructor(private readonly customerRepo: CustomerDB) {}

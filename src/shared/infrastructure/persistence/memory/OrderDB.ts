@@ -1,4 +1,4 @@
-import { OrderModel } from "../Order.model";
+import { OrderModel } from "../../../../core/order/infrastructure/persistence/memory/Order.model";
 import { IOrderDB } from "./OrderDB.interface";
 
 export class OrderDB implements IOrderDB {

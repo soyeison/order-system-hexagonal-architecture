@@ -1,30 +1,42 @@
 import { CreateCustomerImpl } from "./core/customer/application/Create/CreateCustomer"
 import { CreateCustomerInput } from "./core/customer/application/Create/CreateCustomer.interface"
 import { UpdateCustomerImpl } from "./core/customer/application/Update/UpdateCustomer"
-import { CustomerRepository } from "./core/customer/infrastructure/persistence/InMemoryCustomerRepository"
-import { CustomerDB } from "./core/customer/infrastructure/persistence/memory/CustomerDB"
+/* import { CustomerRepository } from "./core/customer/infrastructure/persistence/InMemoryCustomerRepository" */
+import { CustomerDB } from "./shared/infrastructure/persistence/memory/CustomerDB"
 import { CreateOrderImpl } from "./core/order/application/Create/CreateOrder"
 import { CreateOrderInput } from "./core/order/application/Create/CreateOrder.interface"
 import { transitionStrategies } from "./core/order/application/UpdateStatus/StateTransitionStrategy/StateTransitionStrategy"
 import { UpdateOrderStatusImpl } from "./core/order/application/UpdateStatus/UpdateOrderStatus"
 import { UpdateOrderStatusInput } from "./core/order/application/UpdateStatus/UpdateOrderStatus.interface"
-import { OrderRepository } from "./core/order/infrastructure/persistence/InMemoryOrderRepository"
-import { OrderDB } from "./core/order/infrastructure/persistence/memory/OrderDB"
+/* import { OrderRepository } from "./core/order/infrastructure/persistence/InMemoryOrderRepository" */
+import { OrderDB } from "./shared/infrastructure/persistence/memory/OrderDB"
 import { CreateProductImpl } from "./core/product/application/Create/CreateProduct"
 import { CreateProductInput } from "./core/product/application/Create/CreateProduct.interface"
-import { ProductRepository } from "./core/product/infrastructure/persistence/InMemoryProductRepository"
-import { ProductDB } from "./core/product/infrastructure/persistence/memory/ProductDB"
+/* import { ProductRepository } from "./core/product/infrastructure/persistence/InMemoryProductRepository" */
+import { ProductDB } from "./shared/infrastructure/persistence/memory/ProductDB"
 import { OrderStatus } from "./shared/domain/OrderState.enum"
+import dbInit from "./shared/infrastructure/persistence/sequelize/init"
+import sequelizeConnection from "./shared/infrastructure/persistence/sequelize/SequelizeOrmConfig"
+import { CustomerRepository } from "./core/customer/infrastructure/persistence/SequelizeOrmCustomerRepository"
+import { ProductRepository } from "./core/product/infrastructure/persistence/SequelizeOrmProductRepository"
+import { OrderRepository } from "./core/order/infrastructure/persistence/SequelizeOrmOrderRepository"
 
 (async () => {
     // DB en memoria
-    const customerDBInstance = new CustomerDB()
+    /* const customerDBInstance = new CustomerDB()
     const productDBInstance = new ProductDB()
-    const orderDBInstance = new OrderDB()
+    const orderDBInstance = new OrderDB() */
     // Inicializar
-    const customerRepositoryIntance = new CustomerRepository(customerDBInstance)
+    /* const customerRepositoryIntance = new CustomerRepository(customerDBInstance)
     const productRepositoryInstance = new ProductRepository(productDBInstance)
     const orderRepositoryInstance = new OrderRepository(orderDBInstance, customerRepositoryIntance, productRepositoryInstance)
+    const orderUpdatedStateInstance = new UpdateOrderStatusImpl(orderRepositoryInstance, transitionStrategies) */
+
+    // Iniciar los modelos de la persistencia de datos en sqlite
+    await dbInit()
+    const customerRepositoryIntance = new CustomerRepository(sequelizeConnection)
+    const productRepositoryInstance = new ProductRepository(sequelizeConnection)
+    const orderRepositoryInstance = new OrderRepository(sequelizeConnection, customerRepositoryIntance)
     const orderUpdatedStateInstance = new UpdateOrderStatusImpl(orderRepositoryInstance, transitionStrategies)
 
     // Creamos un customer

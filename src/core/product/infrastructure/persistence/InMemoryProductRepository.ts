@@ -1,7 +1,7 @@
 import { Product } from "../../domain/Product"
 import { IProductRepository } from "../../domain/ProductRepository.interface"
-import { ProductModel } from "./Product.model"
-import { ProductDB } from "./memory/ProductDB"
+import { ProductModel } from "./memory/Product.model"
+import { ProductDB } from "../../../../shared/infrastructure/persistence/memory/ProductDB"
 
 export class ProductRepository implements IProductRepository {
     constructor(private readonly productRepo: ProductDB) {}
