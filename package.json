@@ -2,13 +2,20 @@
   "name": "hexagonal-architecture-order-system",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start:dev": "yarn ts-node src/shared/infrastructure/api/index.ts"
+  },
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.4",
     "@types/uuid": "^9.0.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
     "sequelize": "^6.37.2",
     "sequelize-typescript": "^2.1.6",
     "sqlite3": "^5.1.7",
